@@ -1,0 +1,1 @@
+nuget pack .\Miae.Common.csproj -Build -Properties Configuration=Release
