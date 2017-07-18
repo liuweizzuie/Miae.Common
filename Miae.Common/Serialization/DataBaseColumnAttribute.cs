@@ -39,5 +39,23 @@ namespace Miae.Data.Serialization
             }
             return mapping;
         }
+
+        public static IList<string> GetPrimaryKeys(Type entityType)
+        {
+            IList<string> result = new List<string>();
+
+            PropertyInfo[] pis = entityType.GetProperties();
+
+            foreach (PropertyInfo pi in pis) //从 DataBaseColumnAttribute 中读取 属性-列 映射。
+            {
+                DataBaseColumnAttribute item = pi.GetCustomAttribute<DataBaseColumnAttribute>();
+                if (item != null && item.PrimaryKey)
+                {
+                    result.Add(item.Name);
+                }
+            }
+
+            return result;
+        }
     }
 }
