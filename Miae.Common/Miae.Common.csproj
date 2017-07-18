@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <Version>1.0.0.5</Version>
+    <Version>1.0.0.7</Version>
     <Description />
-    <PackageReleaseNotes>1.0.0.5: DataColumnAttribute：增加 PrimaryKey 属性。
+    <PackageReleaseNotes>1.0.0.7: IListExtension 链式语法
+1.0.0.6: IListExtension.RemoveRange
+1.0.0.5: DataColumnAttribute：增加 PrimaryKey 属性。
 
 1.0.0.3：增加日志类：TextLogger; 
 运行库改为 NetStandard.Library 1.3; 
@@ -13,8 +15,8 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <RootNamespace>Miae</RootNamespace>
-    <AssemblyVersion>1.0.0.5</AssemblyVersion>
-    <FileVersion>1.0.0.5</FileVersion>
+    <AssemblyVersion>1.0.0.7</AssemblyVersion>
+    <FileVersion>1.0.0.7</FileVersion>
     <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
 

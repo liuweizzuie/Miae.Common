@@ -5,9 +5,16 @@ namespace Miae.Collections
 {
     public static class IListExtension
     {
-        public static void AddRange<T>(this IList<T> list, IEnumerable<T> items)
+        public static IList<T> AddRange<T>(this IList<T> list, IEnumerable<T> items)
         {
             foreach (T t in items) { list.Add(t); }
+            return list;
+        }
+
+        public static IList<T> RemoveRange<T>(this IList<T> list, IEnumerable<T> items)
+        {
+            foreach (T t in items) { list.Remove(t); }
+            return list;
         }
 
         public static IList<T> SubList<T>(this IList<T> list, int startIndex, int count)
@@ -26,7 +33,7 @@ namespace Miae.Collections
             return list.SubList(startIndex, list.Count - startIndex);
         }
 
-        public static void RemoveWhere<T>(this IList<T> list, Predicate<T> predicate)
+        public static IList<T> RemoveWhere<T>(this IList<T> list, Predicate<T> predicate)
         {
             for (int i = list.Count -1; i >= 0; i--)
             {
@@ -35,6 +42,7 @@ namespace Miae.Collections
                     list.RemoveAt(i);
                 }
             }
+            return list;
         }
     }
 }
