@@ -2,17 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <Version>1.0.0.3</Version>
+    <Version>1.0.0.4</Version>
     <Description />
-    <PackageReleaseNotes>1.0.0.3：增加日志类：TextLogger; 
+    <PackageReleaseNotes>1.0.0.4: DataColumnAttribute：增加 PrimaryKey 属性。
+
+1.0.0.3：增加日志类：TextLogger; 
 运行库改为 NetStandard.Library 1.3; 
 </PackageReleaseNotes>
     <RepositoryUrl />
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <RootNamespace>Miae</RootNamespace>
-    <AssemblyVersion>1.0.0.3</AssemblyVersion>
-    <FileVersion>1.0.0.3</FileVersion>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
+    <FileVersion>1.0.0.4</FileVersion>
     <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
 

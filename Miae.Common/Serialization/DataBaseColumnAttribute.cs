@@ -9,7 +9,14 @@ namespace Miae.Data.Serialization
 
         public DataBaseColumnAttribute(string name) { this.Name = name; }
 
+        public DataBaseColumnAttribute(string name, bool primaryKey):this(name)
+        {
+            this.PrimaryKey = primaryKey;
+        }
+
         public string Name { get; protected set; }
+
+        public bool PrimaryKey { get; protected set; }
 
         /// <summary>
         /// 获取属性-列映射
