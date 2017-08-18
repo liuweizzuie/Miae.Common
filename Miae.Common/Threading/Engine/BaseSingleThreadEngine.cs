@@ -63,6 +63,7 @@ namespace Miae.Threading.Engine
             this.IsRunning = true;
 
             Thread t = new Thread(new ThreadStart(this.Work));
+            
             t.Name = this.GetType().Name;
             t.Start();
         }
@@ -126,7 +127,6 @@ namespace Miae.Threading.Engine
         /// </summary>
         public event EventHandler<ExceptionEventArgs> OnEngineStopped;  //{ add;remove;}
 
-
         /// <summary>
         /// 触发 OnEngineStopped 事件。
         /// </summary>
@@ -159,9 +159,9 @@ namespace Miae.Threading.Engine
             }
         }
 
-        ~BaseSingleThreadEngine()
+        ~BaseSingleThreadEngine()  //不能在这里调用 release 方法。
         {
-            this.mtIsRunning.ReleaseMutex();
+            this.mtIsRunning.Dispose();
             this.manualResetEvent4Running.Dispose();
         }
     }
