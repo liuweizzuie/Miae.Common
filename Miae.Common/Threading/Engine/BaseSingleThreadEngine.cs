@@ -100,8 +100,8 @@ namespace Miae.Threading.Engine
             }
             catch (Exception exp)
             {
-                this.RaiseOnEngineStoppedEvent(exp);
                 this.IsRunning = false;
+                this.RaiseOnEngineStoppedEvent(exp);
             }
         }
 

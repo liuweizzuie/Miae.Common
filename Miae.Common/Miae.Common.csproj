@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <Version>1.0.0.8</Version>
+    <Version>1.0.0.9</Version>
     <Description />
-    <PackageReleaseNotes>1.0.0.8:  Engine 的一个线程同步问题
+    <PackageReleaseNotes>1.0.0.9: Engine 的一个异常处理逻辑更改。
+1.0.0.8:  Engine 的一个线程同步问题
 1.0.0.7: IListExtension 链式语法
 1.0.0.6: IListExtension.RemoveRange
 1.0.0.5: DataColumnAttribute：增加 PrimaryKey 属性。
@@ -16,8 +17,8 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <RootNamespace>Miae</RootNamespace>
-    <AssemblyVersion>1.0.0.8</AssemblyVersion>
-    <FileVersion>1.0.0.8</FileVersion>
+    <AssemblyVersion>1.0.0.9</AssemblyVersion>
+    <FileVersion>1.0.0.9</FileVersion>
     <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
 
