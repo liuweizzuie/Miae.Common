@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Miae.Collections
 {
@@ -44,5 +45,28 @@ namespace Miae.Collections
             }
             return list;
         }
+
+        #region Minus
+        /// <summary>
+        /// 集合相减，如 A - B， 得到 A 中存在，而 B 中不存在的元素的集合，结果元素为A中元素的引用。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> Minus<T>(this IEnumerable<T> list, IEnumerable<T> other) where T : class
+        {
+            IList<T> result = new List<T>();
+
+            foreach (T item in list)
+            {
+                if (!other.Any(o => o == item))
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+        #endregion
     }
 }
