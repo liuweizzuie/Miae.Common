@@ -60,7 +60,12 @@ namespace Miae.Collections
 
             foreach (T item in list)
             {
-                if (!other.Any(o => o == item))
+                //string 到底还是引用类型，使用 == 来比较，并不靠谱。
+                Func<T, bool> func = item is string ? 
+                    new Func<T, bool>(o => object.Equals(o, item)) : 
+                    new Func<T, bool>(o => o == item); 
+
+                if (!other.Any(func))
                 {
                     result.Add(item);
                 }
