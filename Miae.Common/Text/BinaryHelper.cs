@@ -13,7 +13,7 @@ namespace Miae.Text
         /// <param name="data">目标字节。</param>
         /// <param name="pattern">匹配字节。</param>
         /// <returns>如果有多条符合，则有多个位置；如果没有，则返回一个空的List</returns>
-        public static List<int> IndexOf(byte[] data, byte[] pattern)
+        public static List<int> IndexOf(this byte[] data, byte[] pattern)
         {
             List<int> matchedPos = new List<int>();
 
