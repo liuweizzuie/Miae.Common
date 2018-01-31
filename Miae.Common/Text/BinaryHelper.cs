@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Miae.Text
 {
-    class BinaryHelper
+    public static class BinaryHelper
     {
         /// <summary>
         /// 在data中搜索pattern，返回data中pattern的位置。
@@ -34,6 +35,73 @@ namespace Miae.Text
                 }
             }
             return matchedPos;
+        }
+
+        public static void SetZero(this byte[] bytes)
+        {
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                bytes[i] = 0x00;
+            }
+        }
+
+        /// <summary>
+        /// 16进制字符串转字节数组
+        /// </summary>
+        /// <param name="hexString"></param>
+        /// <returns></returns>
+        public static byte[] Hex2Byte(string hexString)
+        {
+            if (hexString.Length % 2 == 1) { throw new InvalidOperationException("长度不对！"); }
+            int len = hexString.Length / 2;
+            byte[] arr = new byte[len];
+            for (int i = 0; i < len; i++)
+            {
+                arr[i] = Convert.ToByte(hexString.Substring(i * 2, 2), 16);
+            }
+            return arr;
+        }
+
+        public static string ToHexString(this byte[] bytes, char spliter)
+        {
+            string returnStr = string.Empty;
+            if (bytes != null)
+            {
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    returnStr += bytes[i].ToString("X2");
+
+                    if (spliter != char.MinValue)
+                    {
+                        returnStr += spliter;
+                    }
+                }
+            }
+            return returnStr;
+        }
+
+        public static string ToHexString(this byte[] bytes)
+        {
+            return ToHexString(bytes, char.MinValue);
+        }
+
+        public static short ToShort(this byte[] bytes, bool bigEndian)
+        {
+            Debug.Assert(bytes.Length == 2);
+
+            if (bigEndian)
+            {
+                return (short)((bytes[1] << 8) + bytes[0]);
+            }
+            else
+            {
+                return (short)((bytes[0] << 8) + bytes[1]);
+            }
+        }
+
+        public static byte ToBcdValue(this byte @byte)
+        {
+            return (byte)((@byte / 0x10) * 10 + (@byte % 0x10));
         }
     }
 }
