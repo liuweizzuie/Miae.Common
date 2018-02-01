@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Miae.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+using System.Linq;
 
 namespace Miae.Text
 {
@@ -37,71 +36,48 @@ namespace Miae.Text
             return matchedPos;
         }
 
+        /// <summary>
+        /// 将一个二进制串按指定的分割标志进行分割。
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="spliter"></param>
+        /// <returns></returns>
+        public static IList<byte[]> Split(this byte[] bytes, byte[] spliter)
+        {
+            IList<byte[]> result = new List<byte[]>();
+
+            IList<int> indexes = bytes.IndexOf(spliter);
+
+            if (indexes.Count == 0)
+            {
+                result.Add(bytes);
+            }
+            else
+            {
+                for (int i = 0; i < indexes.Count; i++)
+                {
+                    if (i == indexes.Count - 1)
+                    {
+                        byte[] lastBytes = bytes.SubList(indexes[i], bytes.Length - indexes[i]).ToArray();
+                        result.Add(lastBytes);
+                    }
+                    else
+                    {
+                        byte[] msgBinary = bytes.SubList(indexes[i], indexes[i + 1] - indexes[i]).ToArray();
+                        result.Add(msgBinary);
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public static void SetZero(this byte[] bytes)
         {
             for (int i = 0; i < bytes.Length; i++)
             {
                 bytes[i] = 0x00;
             }
-        }
-
-        /// <summary>
-        /// 16进制字符串转字节数组
-        /// </summary>
-        /// <param name="hexString"></param>
-        /// <returns></returns>
-        public static byte[] Hex2Byte(string hexString)
-        {
-            if (hexString.Length % 2 == 1) { throw new InvalidOperationException("长度不对！"); }
-            int len = hexString.Length / 2;
-            byte[] arr = new byte[len];
-            for (int i = 0; i < len; i++)
-            {
-                arr[i] = Convert.ToByte(hexString.Substring(i * 2, 2), 16);
-            }
-            return arr;
-        }
-
-        public static string ToHexString(this byte[] bytes, char spliter)
-        {
-            string returnStr = string.Empty;
-            if (bytes != null)
-            {
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    returnStr += bytes[i].ToString("X2");
-
-                    if (spliter != char.MinValue)
-                    {
-                        returnStr += spliter;
-                    }
-                }
-            }
-            return returnStr;
-        }
-
-        public static string ToHexString(this byte[] bytes)
-        {
-            return ToHexString(bytes, char.MinValue);
-        }
-
-        public static short ToShort(this byte[] bytes, bool bigEndian)
-        {
-            Debug.Assert(bytes.Length == 2);
-
-            if (bigEndian)
-            {
-                return (short)((bytes[1] << 8) + bytes[0]);
-            }
-            else
-            {
-                return (short)((bytes[0] << 8) + bytes[1]);
-            }
-        }
-
-        public static byte ToBcdValue(this byte @byte)
-        {
-            return (byte)((@byte / 0x10) * 10 + (@byte % 0x10));
         }
     }
 }

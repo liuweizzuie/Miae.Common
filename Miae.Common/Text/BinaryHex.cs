@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Miae.Text
 {
-    public class BinaryHex
+    public static class BinaryHex
     {
         /// <summary>
         /// 16进制字符串转字节数组
@@ -39,13 +39,12 @@ namespace Miae.Text
             return returnBytes;
         }
 
-
         /// <summary> 
         /// 字节数组转16进制字符串 
         /// </summary> 
         /// <param name="bytes"></param>
         /// <returns></returns>
-        public static string Byte2Hex(byte[] bytes, bool withSpace = false)
+        public static string Byte2Hex(this byte[] bytes, bool withSpace = false)
         {
             string returnStr = "";
             if (bytes != null)
@@ -60,6 +59,32 @@ namespace Miae.Text
                 }
             }
             return returnStr;
+        }
+
+        /// <summary>
+        /// 将二进制数组转为 十六进制字符串。
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="spliter">如果设置为char.MinValue,则会忽略。</param>
+        /// <returns></returns>
+        public static string ToHexString(this byte[] bytes, char spliter)
+        {
+            string returnStr = string.Empty;
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                returnStr += bytes[i].ToString("X2");
+
+                if (spliter != char.MinValue)
+                {
+                    returnStr += spliter;
+                }
+            }
+            return returnStr;
+        }
+
+        public static string ToHexString(this byte[] bytes)
+        {
+            return ToHexString(bytes, char.MinValue);
         }
 
         /// <summary> 

@@ -18,18 +18,69 @@ namespace Miae.Text
         /// <exception cref="ArgumentException"/>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public static double BinaryToDouble(byte[] bytes)
+        public static double ToDouble(this byte[] bytes)
         {
-            Debug.Assert(bytes != null, "bytes can not be null.");
             Debug.Assert(bytes.Length == 8, "The Length of byts must be 8.");
 
-            if (bytes == null) { throw new ArgumentNullException("bytes can not be null."); }
-            else if (bytes.Length != 8) { throw new ArgumentOutOfRangeException("The Length of byts must be 8."); }
+            if (bytes.Length != 8) { throw new ArgumentOutOfRangeException("The Length of byts must be 8."); }
 
             double d = BitConverter.ToDouble(bytes, 0);
             return d;
         }
 
+        public static short ToShort(this byte[] bytes, bool bigEndian)
+        {
+            Debug.Assert(bytes.Length == 2);
+
+            if (bigEndian)
+            {
+                return (short)((bytes[1] << 8) + bytes[0]);
+            }
+            else
+            {
+                return (short)((bytes[0] << 8) + bytes[1]);
+            }
+        }
+
+        public static byte ToBcdValue(this byte @byte)
+        {
+            return (byte)((@byte / 0x10) * 10 + (@byte % 0x10));
+        }
+
+        /// <summary>
+        /// 转为十进制字符串。一个典型的应用场景就是不规则点分十进制，如5位，6位，不能用 IPAddress 。
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="spliter">如果指定为 char.MinValue，则会忽略。</param>
+        /// <returns></returns>
+        public static string ToDecimalString(this byte[] bytes, char spliter)
+        {
+            string returnStr = string.Empty;
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                returnStr += bytes[i].ToString();
+
+                if (spliter != char.MinValue)
+                {
+                    returnStr += spliter;
+                }
+            }
+            return returnStr;
+        }
+
+        /// <summary>
+        /// 从数组中返回唯一的 byte 。用以屏蔽 [0] 。
+        /// 为什么要屏蔽 [0] ？ 因为它看起来让人不舒服。
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static byte ToByte(this byte[] bytes)
+        {
+            Debug.Assert(bytes.Length == 1, "the bytes array must contains just one element");
+            return bytes[0];
+        }
+
+        #region ToBytes
         /// <summary>
         /// 把 Int16 类型的数字转换成为 两个Byte。
         /// </summary>
@@ -70,6 +121,8 @@ namespace Miae.Text
 
             return result;
         }
+        #endregion 
+
 
     }
 }
