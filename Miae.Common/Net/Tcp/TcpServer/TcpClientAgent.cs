@@ -115,6 +115,22 @@ namespace Miae.Net.Tcp
             this.Stream.Flush();
         }
 
+        /// <summary>
+        /// 供引擎周期性调用。
+        /// </summary>
+        public void Schedule()
+        {
+            OnSchedule();
+        }
+
+        /// <summary>
+        /// 由引擎周期性调用，可以在这里执行一些主动任务。
+        /// </summary>
+        protected virtual void OnSchedule()
+        {
+
+        }
+
         public void Close()
         {
             this.client.Close();

@@ -68,6 +68,7 @@ namespace Miae.Net.Tcp
                     {
                         client.Read();
                     }
+                    client.Schedule();
 
                     try
                     {

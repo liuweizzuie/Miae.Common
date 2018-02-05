@@ -110,6 +110,11 @@ namespace Miae.Threading.Engine
         /// </summary>
         public BaseSingleThreadEngine() : this(200, 10) { }
 
+        /// <summary>
+        /// 构造一个新的单循环引擎
+        /// </summary>
+        /// <param name="detectSpanInMs">每两次任务执行的间隔</param>
+        /// <param name="sleepTimeInMs">每次休眠的时间,决定了引擎的调度精度</param>
         public BaseSingleThreadEngine(int detectSpanInMs, int sleepTimeInMs)
         {
             if (detectSpanInMs <= 0) { throw new ArgumentException("detectSpanInMs must be greater than 0!"); }

@@ -62,5 +62,7 @@ namespace Miae.Net.Tcp
         /// 释放此<see cref="ITcpClientAgent"/>实例，并请求关闭基础 TCP 连接。
         /// </summary>
         void Close();
+
+        void Schedule();
     }
 }

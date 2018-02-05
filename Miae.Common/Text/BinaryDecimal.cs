@@ -60,7 +60,7 @@ namespace Miae.Text
             {
                 returnStr += bytes[i].ToString();
 
-                if (spliter != char.MinValue)
+                if (spliter != char.MinValue && i != bytes.Length - 1)
                 {
                     returnStr += spliter;
                 }

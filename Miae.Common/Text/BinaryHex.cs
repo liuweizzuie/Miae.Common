@@ -74,7 +74,7 @@ namespace Miae.Text
             {
                 returnStr += bytes[i].ToString("X2");
 
-                if (spliter != char.MinValue)
+                if (spliter != char.MinValue && i != bytes.Length - 1)
                 {
                     returnStr += spliter;
                 }
