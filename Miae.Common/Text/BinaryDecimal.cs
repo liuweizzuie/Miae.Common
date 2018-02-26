@@ -28,7 +28,7 @@ namespace Miae.Text
             return d;
         }
 
-        public static short ToShort(this byte[] bytes, bool bigEndian)
+        public static short ToShort(this byte[] bytes, bool bigEndian = false)
         {
             Debug.Assert(bytes.Length == 2);
 
@@ -39,6 +39,20 @@ namespace Miae.Text
             else
             {
                 return (short)((bytes[0] << 8) + bytes[1]);
+            }
+        }
+
+        public static ushort ToUShort(this byte[] bytes, bool bigEndian = false)
+        {
+            Debug.Assert(bytes.Length == 2);
+
+            if (bigEndian)
+            {
+                return (ushort)((bytes[1] << 8) + bytes[0]);
+            }
+            else
+            {
+                return (ushort)((bytes[0] << 8) + bytes[1]);
             }
         }
 
