@@ -11,7 +11,7 @@ namespace Miae.Net.Tcp
     public abstract class TcpServer : BaseSingleThreadEngine
     {
         ITcpListener listener = new AgileTcpListener();
-        ITcpClientAgentCollection clients = new TcpClientAgentCollection();
+        protected ITcpClientAgentCollection clients = new TcpClientAgentCollection();
 
         #region Client Events
         #region event ClientConnectedEvent

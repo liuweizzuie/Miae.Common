@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Version>1.0.0.21</Version>
+    <Version>1.0.0.22</Version>
     <Description />
-    <PackageReleaseNotes>1.0.0.20: 更新 TcpClient
+    <PackageReleaseNotes>1.0.0.20~1.0.0.22: 更新 TcpClient
 1.0.0.15~19: 加入 Binary 操作类。
 1.0.0.13: 加入TcpServer
 1.0.0.12: 升级元包到 ntd2
@@ -21,8 +21,8 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <RootNamespace>Miae</RootNamespace>
-    <AssemblyVersion>1.0.0.21</AssemblyVersion>
-    <FileVersion>1.0.0.21</FileVersion>
+    <AssemblyVersion>1.0.0.22</AssemblyVersion>
+    <FileVersion>1.0.0.22</FileVersion>
     <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
 
