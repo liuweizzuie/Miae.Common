@@ -105,7 +105,12 @@ namespace Miae.Net.Tcp
             if (this.listener.Pending())
             {
                 TcpClient client = this.listener.AcceptTcpClient();
-                client.Client.IOControl(IOControlCode.KeepAliveValues, new byte[] { 1, 0, 0, 0, 0x20, 0x4e, 0, 0, 0xd0, 0x07, 0, 0 }, null);
+
+                if (System.Environment.OSVersion.ToString().Contains("Windows"))
+                {
+                    client.Client.IOControl(IOControlCode.KeepAliveValues, new byte[] { 1, 0, 0, 0, 0x20, 0x4e, 0, 0, 0xd0, 0x07, 0, 0 }, null);
+                }
+
                 this.RaiseTcpClientEstablished(client);
             }
 

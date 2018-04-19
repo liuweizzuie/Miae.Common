@@ -72,8 +72,6 @@ namespace Miae.Collections
                 count--;
                 return t;
             }
-
-
         }
 
         public override bool PutOne(T t)
