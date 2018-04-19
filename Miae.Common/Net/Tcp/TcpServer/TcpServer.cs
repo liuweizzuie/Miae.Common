@@ -39,7 +39,13 @@ namespace Miae.Net.Tcp
 
         public TcpServer() : base(20, 2)
         {
+            this.listener.ListenerStopped += Listener_ListenerStopped;
             this.listener.ClientEstablishedEvent += listener_ClientEstablishedEvent;
+        }
+
+        private void Listener_ListenerStopped(object sender, ExceptionEventArgs e)
+        {
+            this.RaiseOnEngineStoppedEvent(e.Exception);
         }
 
         public new void Start() { this.listener.Start(); base.Start(); }

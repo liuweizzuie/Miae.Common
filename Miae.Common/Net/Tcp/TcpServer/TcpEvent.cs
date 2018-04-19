@@ -29,6 +29,13 @@ namespace Miae.Net.Tcp
     public delegate void TcpClientDisconnectedEventHandler(object sender, TcpClientDisconnectedArgs e);
 
     /// <summary>
+    /// 当TCPListener意外停止时发生。
+    /// </summary>
+    /// <param name="sender">触发此事件的对象，由  <see cref="AgileTcpListener"/> 触发</param>
+    /// <param name="e">包含了异常信息的参数。</param>
+    public delegate void TcpListenerStopped(object sender, ExceptionEventArgs e);
+
+    /// <summary>
     /// 表示一次客户端上线或掉线事件。
     /// </summary>
     public class RemoteClientEventArgs : EventArgs

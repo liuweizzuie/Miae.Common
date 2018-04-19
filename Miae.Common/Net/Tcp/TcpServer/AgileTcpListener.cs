@@ -43,6 +43,17 @@ namespace Miae.Net.Tcp
         }
         #endregion
 
+        #region ListenerStopped
+        public event TcpListenerStopped ListenerStopped;
+        protected void RaiseListenerStopped(ExceptionEventArgs e)
+        {
+            if (this.ListenerStopped != null)
+            {
+                this.ListenerStopped(this, e);
+            }
+        }
+        #endregion 
+
         #region ctor
         public AgileTcpListener() : this(8080) { }
 
@@ -53,7 +64,13 @@ namespace Miae.Net.Tcp
             base.DetectSpanInMs = 10;
             base.SleepTimeInMs = 2;
             this.MaxConnectionCount = 10000;
+            this.OnEngineStopped += AgileTcpListener_OnEngineStopped;
             this.listener = string.IsNullOrEmpty(ip) ? new TcpListener(IPAddress.Any, port) : new TcpListener(IPAddress.Parse(ip), port);
+        }
+
+        private void AgileTcpListener_OnEngineStopped(object sender, ExceptionEventArgs e)
+        {
+            RaiseListenerStopped(e);
         }
         #endregion
 

@@ -44,5 +44,10 @@ namespace Miae.Net.Tcp
         /// 当有客户端建立连接时发生。
         /// </summary>
         event TcpClientEstablishedEventHandler ClientEstablishedEvent;
+
+        /// <summary>
+        /// 当TCP服务器意外停止时发生。
+        /// </summary>
+        event TcpListenerStopped ListenerStopped;
     }
 }
