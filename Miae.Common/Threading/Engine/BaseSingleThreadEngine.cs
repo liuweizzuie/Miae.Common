@@ -66,7 +66,14 @@ namespace Miae.Threading.Engine
             
             t.Name = this.GetType().Name;
             t.Start();
+
+            OnStart(); 
         }
+
+        /// <summary>
+        /// 由子类重载，写写日志什么的。
+        /// </summary>
+        protected virtual void OnStart() { }
 
         public void Stop()
         {
